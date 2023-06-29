@@ -10,7 +10,7 @@ import umc.project.domain.study.Study;
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED) //생성자사용가능
-@AllArgsConstructor //모든 필드를 가진 생성자 가능
+//@AllArgsConstructor //모든 필드를 가진 생성자 가능
 public class Member { //entity는 private
 
     @Id //pk라는 뜻
@@ -29,5 +29,14 @@ public class Member { //entity는 private
     @JoinColumn(name = "study_id")
     private Study study;
 
+    public Member (String name, String nickName, boolean sex){
+        this.name = name;
+        this.nickName = nickName;
+        this.sex = sex;
+    }
+    public void addStudy(Study study){
+        this.study = study;
+        study.getMemberList().add(this);
+    }
 }
 
